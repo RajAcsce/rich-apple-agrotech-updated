@@ -29,7 +29,7 @@
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-9975162118",
+      "telephone": "+91-8421532100",
       "email": "info.richapple@gmail.com"
     },
     "sameAs": [
@@ -984,9 +984,10 @@
       justify-content: center;
       flex-shrink: 0;
     }
+    /* FIX 5: Hero product images — made visibly bigger */
     .hp-product-img {
-      width: 240px;
-      height: 300px;
+      width: 340px;
+      height: 420px;
       object-fit: contain;
       filter: drop-shadow(0 24px 56px rgba(0,0,0,0.55));
       transition: transform 0.4s ease, filter 0.4s ease;
@@ -1001,7 +1002,7 @@
     .hp-product-img-wrap::before {
       content: '';
       position: absolute;
-      width: 220px; height: 220px;
+      width: 320px; height: 320px;
       background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
       border-radius: 50%;
     }
@@ -1378,7 +1379,7 @@
       .hp-hero-inner { grid-template-columns: 1fr; }
       .hp-hero .hp-bottle { display: none; }
       .hp-hero .hp-product-img-wrap { display: flex; justify-content: center; margin-top: 24px; }
-      .hp-hero .hp-product-img { width: 150px; height: 190px; }
+      .hp-hero .hp-product-img { width: 220px; height: 280px; }
       .form-row { grid-template-columns: 1fr; }
       .audience-section, .drives-section, .why-section { padding: 40px 28px; margin: 0 12px; }
       .cta-band { padding: 40px 28px; margin: 0 12px; }
@@ -1400,6 +1401,120 @@
       .solutions-grid { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: 1fr; }
       .sustain-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===== CHANGE 1 & 6: Social Icon Styles ===== */
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .social-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      transition: all 0.25s;
+      color: white;
+      opacity: 0.75;
+    }
+    .social-icon-link:hover { opacity: 1; transform: translateY(-3px); }
+    .social-icon-fb { background: #1877f2; }
+    .social-icon-fb:hover { background: #145dbf; }
+    .social-icon-li { background: #0a66c2; }
+    .social-icon-li:hover { background: #084e96; }
+    .social-icon-yt { background: #ff0000; }
+    .social-icon-yt:hover { background: #cc0000; }
+    /* Contact page icons on light bg */
+    .contact-card .social-icon-link { opacity: 0.9; }
+    .contact-card .social-icon-link:hover { opacity: 1; }
+
+    /* ===== CHANGE 3: Field Validation Error Styles ===== */
+    .field-error {
+      display: none;
+      color: #c0392b;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+    .field-error.visible { display: block; }
+    .form-group input.input-error {
+      border-color: #c0392b;
+      background: #fff8f8;
+    }
+    .form-group input.input-error:focus {
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
+    }
+
+    /* ===== CHANGE 7: Gallery Page Styles ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+    }
+    .gallery-item {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .gallery-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--green-light); }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: var(--green-pale);
+    }
+    .gallery-caption {
+      padding: 14px 16px;
+      font-size: 0.84rem;
+      color: var(--text-mid);
+      font-weight: 500;
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+    }
+    /* FIX 4: gallery video grid — 2 columns so 4 videos sit in a 2×2 grid */
+    .gallery-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .gallery-video-item {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .gallery-video-item:hover { box-shadow: var(--shadow-md); }
+    .gallery-video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .gallery-video-wrapper video,
+    .gallery-video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-video-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1429,6 +1544,8 @@
       <li role="none"><a href="#" onclick="showPage('about');return false;" role="menuitem" id="nav-about">About Us</a></li>
       <li role="none"><a href="#" onclick="showPage('products');return false;" role="menuitem" id="nav-products">Products</a></li>
       <li role="none"><a href="#" onclick="showPage('hero-product');return false;" role="menuitem" id="nav-hero-product">Hero Product</a></li>
+      <!-- CHANGE 7: Gallery page added to navigation -->
+      <li role="none"><a href="#" onclick="showPage('gallery');return false;" role="menuitem" id="nav-gallery">Gallery</a></li>
       <li role="none"><a href="#" onclick="showPage('careers');return false;" role="menuitem" id="nav-careers">Careers</a></li>
       <li role="none"><a href="#" onclick="showPage('contact');return false;" role="menuitem" id="nav-contact">Contact</a></li>
     </ul>
@@ -1450,7 +1567,8 @@
         <p class="hero-meta">Founded December 2025 &nbsp;|&nbsp; Made for India &nbsp;|&nbsp; Scalable Globally</p>
         <div class="hero-btns">
           <a href="#" onclick="showPage('products');return false;" class="btn btn-primary">Explore Products</a>
-          <a href="#" onclick="showPage('contact');return false;" class="btn btn-secondary">Partner With Us</a>
+          <!-- CHANGE 8: "Partner with Us" button opens WhatsApp Business chat -->
+          <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-secondary">Partner With Us</a>
         </div>
       </div>
       <div class="hero-right">
@@ -1513,17 +1631,17 @@
       <p class="section-subtitle">Built for Farmers. Trusted by the Field. Ready for the Future.</p>
       <div class="features-grid" style="text-align:left;">
         <div class="feature-card">
-          <div class="feature-icon">🌾</div>
+          <!-- <div class="feature-icon">🌾</div> -->
           <h4>Traditional Agricultural Wisdom</h4>
           <p>Respecting time-tested farming practices and local knowledge accumulated over generations.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">💡</div>
+          <!-- <div class="feature-icon">💡</div> -->
           <h4>Modern AgriTech Innovation</h4>
           <p>Leveraging cutting-edge technology and scientific research for measurably better outcomes.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📱</div>
+          <!-- <div class="feature-icon">📱</div> -->
           <h4>Digital Farming Solutions</h4>
           <p>Enabling data-driven decision-making that helps farmers adopt technology with confidence.</p>
         </div>
@@ -1538,17 +1656,17 @@
       <h2 class="section-title">What We Focus On</h2>
       <div class="features-grid" style="text-align:left;">
         <div class="feature-card">
-          <div class="feature-icon">🌾</div>
+          <!-- <div class="feature-icon">🌾</div> -->
           <h4>Increasing Farmer Income</h4>
           <p>Through smarter crop practices, efficiency-driven solutions, and decision-support tools that help farmers maximize productivity and profitability.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌱</div>
+          <!-- <div class="feature-icon">🌱</div> -->
           <h4>Soil Health & Sustainable Agriculture</h4>
           <p>We promote long-term soil fertility, balanced nutrient management, and eco-friendly practices to ensure future-ready farming.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">📊</div>
+          <!-- <div class="feature-icon">📊</div> -->
           <h4>Digital & Smart Agriculture</h4>
           <p>Enabling farmers to embrace digital agriculture, data-enabled insights, and modern AgriTech aligned with the evolving global agri ecosystem.</p>
         </div>
@@ -1586,11 +1704,11 @@
       </div>
       <div class="vm-grid">
         <div class="vm-card">
-          <h3>🎯 Our Vision</h3>
+          <h3>Our Vision</h3>
           <p>To become a globally respected AgriTech company from India, creating a future where farmers prosper, soil thrives, and agriculture becomes digitally empowered — benefiting millions of farming families across generations.</p>
         </div>
         <div class="vm-card">
-          <h3>🚀 Our Mission</h3>
+          <h3>Our Mission</h3>
           <p>To deliver experience-driven AgriTech solutions that enhance farmer income, promote soil sustainability, and accelerate the digital transformation of agriculture — making Indian farming economically vibrant and globally competitive.</p>
         </div>
       </div>
@@ -1623,7 +1741,8 @@
           </div>
         </div>
         <div class="audience-cta">
-          <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Get in Touch →</a>
+          <!-- CHANGE 9: "Get in Touch" button opens WhatsApp Business chat -->
+          <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Get in Touch →</a>
         </div>
       </div>
     </div>
@@ -1691,7 +1810,7 @@
               <div class="about-stat-label">Dealer Network</div>
             </div>
             <div class="about-stat-box">
-              <div class="about-stat-num">9+</div>
+              <div class="about-stat-num">4+</div>
               <div class="about-stat-label">Premium Products</div>
             </div>
           </div>
@@ -1707,12 +1826,12 @@
       <h2 class="section-title">Our Foundation: Experience Meets Innovation</h2>
       <p class="section-subtitle">We are not technology builders theorizing about agriculture — we are agricultural practitioners who have evolved into technology enablers.</p>
       <div class="foundation-grid" style="text-align:left;">
-        <div class="foundation-card"><div class="icon">🤝</div><h4>Field Experience</h4><p>Worked shoulder-to-shoulder with farmers across diverse agro-climatic zones, understanding their challenges, seasonal anxieties, and aspirations.</p></div>
-        <div class="foundation-card"><div class="icon">🌍</div><h4>Soil Expertise</h4><p>Studied soil behavior across different terrains — from black cotton soils of Maharashtra to alluvial plains — gaining deep insight into fertility management.</p></div>
-        <div class="foundation-card"><div class="icon">🌾</div><h4>Complete Crop Cycles</h4><p>Navigated full crop cycles from land preparation and seed selection through harvesting and post-harvest management.</p></div>
-        <div class="foundation-card"><div class="icon">🌡️</div><h4>Climate Adaptation</h4><p>Adapted to climate variability — droughts, unseasonal rains, pest outbreaks, and temperature extremes impacting agricultural productivity.</p></div>
-        <div class="foundation-card"><div class="icon">💰</div><h4>Economic Understanding</h4><p>Understood agricultural economics from the ground up — input costs, market access challenges, price volatility, and farming profitability.</p></div>
-        <div class="foundation-card"><div class="icon">🎯</div><h4>Real Solutions</h4><p>This foundation ensures every solution we develop is rooted in reality, every technology serves a genuine need, and every innovation respects farmers' intelligence.</p></div>
+        <div class="foundation-card"><!--<div class="icon">🤝</div>--><h4>Field Experience</h4><p>Worked shoulder-to-shoulder with farmers across diverse agro-climatic zones, understanding their challenges, seasonal anxieties, and aspirations.</p></div>
+        <div class="foundation-card"><!--<div class="icon">🌍</div>--><h4>Soil Expertise</h4><p>Studied soil behavior across different terrains — from black cotton soils of Maharashtra to alluvial plains — gaining deep insight into fertility management.</p></div>
+        <div class="foundation-card"><!--<div class="icon">🌾</div>--><h4>Complete Crop Cycles</h4><p>Navigated full crop cycles from land preparation and seed selection through harvesting and post-harvest management.</p></div>
+        <div class="foundation-card"><!--<div class="icon">🌡️</div>--><h4>Climate Adaptation</h4><p>Adapted to climate variability — droughts, unseasonal rains, pest outbreaks, and temperature extremes impacting agricultural productivity.</p></div>
+        <div class="foundation-card"><!--<div class="icon">💰</div>--><h4>Economic Understanding</h4><p>Understood agricultural economics from the ground up — input costs, market access challenges, price volatility, and farming profitability.</p></div>
+        <div class="foundation-card"><!--<div class="icon">🎯</div>--><h4>Real Solutions</h4><p>This foundation ensures every solution we develop is rooted in reality, every technology serves a genuine need, and every innovation respects farmers' intelligence.</p></div>
       </div>
     </div>
   </section>
@@ -1779,10 +1898,10 @@
       <div class="section-eyebrow">Our Methodology</div>
       <h2 class="section-title">Our Solution Approach</h2>
       <div class="solutions-grid">
-        <div class="solution-card"><div class="icon">👨‍🌾</div><h4>Farmer-Centric</h4><p>Designed with input from farming communities, not imposed upon them</p></div>
-        <div class="solution-card"><div class="icon">🗺️</div><h4>Contextual</h4><p>Adapted to India's diverse geographies, crops, and socio-economic realities</p></div>
-        <div class="solution-card"><div class="icon">📱</div><h4>Accessible</h4><p>Available in local languages, affordable pricing, minimal technical barriers</p></div>
-        <div class="solution-card"><div class="icon">✅</div><h4>Actionable</h4><p>Clear, implementable recommendations rather than overwhelming data</p></div>
+        <div class="solution-card"><!--<div class="icon">👨‍🌾</div>--><h4>Farmer-Centric</h4><p>Designed with input from farming communities, not imposed upon them</p></div>
+        <div class="solution-card"><!--<div class="icon">🗺️</div>--><h4>Contextual</h4><p>Adapted to India's diverse geographies, crops, and socio-economic realities</p></div>
+        <div class="solution-card"><!--<div class="icon">📱</div>--><h4>Accessible</h4><p>Available in local languages, affordable pricing, minimal technical barriers</p></div>
+        <div class="solution-card"><!--<div class="icon">✅</div>--><h4>Actionable</h4><p>Clear, implementable recommendations rather than overwhelming data</p></div>
       </div>
     </div>
   </section>
@@ -1795,7 +1914,13 @@
       <p class="section-subtitle">Meet the passionate professionals driving our vision forward with experience, innovation, and dedication to Indian agriculture.</p>
       <div class="team-grid" style="text-align:left;">
         <div class="team-card">
-          <div class="team-avatar"><img src="images/vijay_s.jpeg" alt="Mr. Bhimrao Saymote" onerror="this.style.display='none';"></div>
+          <!-- CHANGE 11: Updated Mr. Bhimrao Saymote image to new provided file -->
+          <!-- FIX 1: Robust onerror — shows styled emoji when image file not yet on server -->
+          <div class="team-avatar" id="bhimrao-avatar">
+            <img src="images/Mr_Bhimrao_Saymote_image.jpeg" alt="Mr. Bhimrao Saymote"
+                 style="width:100%;height:100%;object-fit:cover;"
+                 onerror="this.style.display='none';document.getElementById('bhimrao-avatar').innerHTML='<span style=\'font-size:2rem;\'>👨‍💼</span>';">
+          </div>
           <div class="team-info">
             <h3>Mr. Bhimrao Saymote</h3>
             <span class="team-role">Founder & CEO</span>
@@ -1820,10 +1945,10 @@
       <div class="section-eyebrow">What We Stand For</div>
       <h2 class="section-title">Our Core Values</h2>
       <div class="values-grid">
-        <div class="value-card"><div class="icon">🌟</div><h4>Quality First</h4><p>Uncompromising commitment to product excellence and service quality in everything we do</p></div>
-        <div class="value-card"><div class="icon">💡</div><h4>Innovation</h4><p>Continuously evolving solutions to meet the changing realities of Indian agriculture</p></div>
-        <div class="value-card"><div class="icon">🤝</div><h4>Trust</h4><p>Building lasting relationships with farmers and partners based on transparency and integrity</p></div>
-        <div class="value-card"><div class="icon">🌱</div><h4>Sustainability</h4><p>Protecting the environment and soil health for future generations of farmers</p></div>
+        <div class="value-card"><!--<div class="icon">🌟</div>--><h4>Quality First</h4><p>Uncompromising commitment to product excellence and service quality in everything we do</p></div>
+        <div class="value-card"><!--<div class="icon">💡</div>--><h4>Innovation</h4><p>Continuously evolving solutions to meet the changing realities of Indian agriculture</p></div>
+        <div class="value-card"><!--<div class="icon">🤝</div>--><h4>Trust</h4><p>Building lasting relationships with farmers and partners based on transparency and integrity</p></div>
+        <div class="value-card"><!--<div class="icon">🌱</div>--><h4>Sustainability</h4><p>Protecting the environment and soil health for future generations of farmers</p></div>
       </div>
     </div>
   </section>
@@ -1851,7 +1976,7 @@
   <div class="products-hero">
     <div class="container">
       <h1>Our Products</h1>
-      <p class="subtitle">🌱 Trusted Solutions for Healthy Soil & Higher Yield</p>
+      <p class="subtitle">Trusted Solutions for Healthy Soil & Higher Yield</p>
       <p class="desc">Scientifically tested, farmer-first products designed to improve soil health, enhance crop nutrition, and deliver sustainable results across all crop types.</p>
     </div>
   </div>
@@ -1868,12 +1993,13 @@
         <!-- Product 1 -->
         <div class="product-card">
           <div class="product-header">
-            <span class="product-icon-large">🌾</span>
+            <!-- FIX 1: Silicon Granules — robust onerror fallback to emoji icon -->
+            <img src="images/Silicon_Granules_image.jpeg" alt="Silicon Granules" class="product-img">
             <div class="product-badge-wrap"><span class="product-category">Soil Health</span></div>
           </div>
           <div class="product-body">
             <div class="product-name">Silicon Granules</div>
-            <div class="product-tagline">🧱 Strong Crop | Stress Protection | Better Yield</div>
+            <div class="product-tagline">Strong Crop | Stress Protection | Better Yield</div>
             <div class="product-desc">Silicon Granules help crops become strong from inside. They improve plant strength and protect crops from heat, drought, pests, and diseases — like adding reinforcement to a building's structure.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -1896,7 +2022,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">Polyhalite Granules</div>
-            <div class="product-tagline">⚖️ 4 Nutrients in One | Balanced Growth</div>
+            <div class="product-tagline">4 Nutrients in One | Balanced Growth</div>
             <div class="product-desc">A natural fertilizer delivering Potash, Sulphur, Calcium & Magnesium together. Slow-release nutrients ensure crops receive balanced nutrition over a longer period without waste.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -1918,7 +2044,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">PDM Potash Granules</div>
-            <div class="product-tagline">🔑 High Potash | Quality Fruits | Drought Resistance</div>
+            <div class="product-tagline">High Potash | Quality Fruits | Drought Resistance</div>
             <div class="product-desc">High-potash fertilizer that improves fruit quality, color, taste, and drought resistance. Essential for fruit crops that demand premium market grades and extended shelf life.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -1940,7 +2066,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">Sugarcane Special Granules</div>
-            <div class="product-tagline">🎋 Made for Sugarcane | Length + Thickness + Sweetness</div>
+            <div class="product-tagline">Made for Sugarcane | Length + Thickness + Sweetness</div>
             <div class="product-desc">Specially formulated granules for sugarcane, engineered to increase cane length, thickness, and sugar content — delivering premium-grade harvest for mills and farmers alike.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -1958,12 +2084,14 @@
         <!-- Product 5 -->
         <div class="product-card">
           <div class="product-header">
-            <span class="product-icon-large">🌍</span>
+            <!-- FIX 1: Prome Granules — robust onerror fallback to emoji icon -->
+            <img src="images/Prome_Granules_image.jpeg" alt="Prome Granules" class="product-img"
+                 onerror="this.outerHTML='<span class=\'product-icon-large\'>🌍</span>';">
             <div class="product-badge-wrap"><span class="product-category">Organic Carbon</span></div>
           </div>
           <div class="product-body">
             <div class="product-name">Prome Granules</div>
-            <div class="product-tagline">🌍 Soil Reviver | Carbon Source | Microbial Booster</div>
+            <div class="product-tagline">Soil Reviver | Carbon Source | Microbial Booster</div>
             <div class="product-desc">Organic matter granules that improve soil structure, water holding capacity, and beneficial microbial activity — restoring the natural vitality of tired, over-farmed soils.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -1986,7 +2114,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">Biochar Powder</div>
-            <div class="product-tagline">♻️ Carbon Sequestration | Long-Term Soil Health</div>
+            <div class="product-tagline">Carbon Sequestration | Long-Term Soil Health</div>
             <div class="product-desc">Activated biochar improves soil porosity, retains nutrients, and supports long-term soil carbon levels — building a foundation for decades of productive farming.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -2008,7 +2136,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">Neem Powder</div>
-            <div class="product-tagline">🌿 Natural Pest Control | Soil Nematode Protection</div>
+            <div class="product-tagline">Natural Pest Control | Soil Nematode Protection</div>
             <div class="product-desc">100% natural neem powder that controls soil pests and nematodes without synthetic chemicals — safe for crops, beneficial organisms, and the environment.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -2026,12 +2154,14 @@
         <!-- Product 8 -->
         <div class="product-card">
           <div class="product-header">
-            <span class="product-icon-large">🧬</span>
+            <!-- FIX 1: Humic Acid Flex 98% — robust onerror fallback to emoji icon -->
+            <img src="images/Humic_Acid_Flex_98_image.jpeg" alt="Humic Acid Flex 98%" class="product-img"
+                 onerror="this.outerHTML='<span class=\'product-icon-large\'>🧬</span>';">
             <div class="product-badge-wrap"><span class="product-category">Soil Conditioner</span><span class="product-special-badge">98% PURE</span></div>
           </div>
           <div class="product-body">
             <div class="product-name">Humic Acid Flex 98%</div>
-            <div class="product-tagline">🧬 98% Pure | Maximum Nutrient Uptake | Soil Activator</div>
+            <div class="product-tagline">98% Pure | Maximum Nutrient Uptake | Soil Activator</div>
             <div class="product-desc">High-purity humic acid powder that dramatically improves nutrient absorption efficiency and soil health — turning mediocre soils into high-performing growing environments.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -2054,7 +2184,7 @@
           </div>
           <div class="product-body">
             <div class="product-name">Zinc + Boron (SSP)</div>
-            <div class="product-tagline">⚡ Dual Micronutrient | Flowering + Fruiting + Grain Filling</div>
+            <div class="product-tagline">Dual Micronutrient | Flowering + Fruiting + Grain Filling</div>
             <div class="product-desc">Combined Zinc and Boron with SSP carrier — essential for pollination, grain filling, and fruit quality. Addresses the two most common micronutrient deficiencies in Indian soils simultaneously.</div>
             <div class="product-benefits-head">Benefits</div>
             <div class="benefits-tags">
@@ -2080,7 +2210,11 @@
         <h2>Want to Know Which Product Is Right for You?</h2>
         <p>Our expert team can guide you to the best solution for your crop, soil, and farming goals.</p>
         <div class="cta-btns">
-          <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Talk to an Expert</a>
+          <!-- CHANGE 2: Products Page "Talk to an Expert" opens WhatsApp Business chat -->
+          <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="currentColor" style="flex-shrink:0;"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+            Talk to an Expert
+          </a>
           <a href="#" onclick="showPage('hero-product');return false;" class="btn btn-secondary">See Hero Products</a>
         </div>
       </div>
@@ -2103,7 +2237,8 @@
           <p class="subtitle">High-End Organic Fruit & Plant Enhancer for Modern Agriculture</p>
           <span class="hp-pack">1 Liter – Premium Solution</span>
           <div>
-            <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Enquire Now →</a>
+            <!-- CHANGE 10: Enquire Now opens WhatsApp Business chat -->
+            <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Enquire Now →</a>
           </div>
         </div>
         <div class="hp-product-img-wrap">
@@ -2136,7 +2271,7 @@
   <section style="background:var(--green-pale);">
     <div class="container" style="text-align:center;">
       <div class="section-eyebrow">What's Inside</div>
-      <h2 class="section-title">🧪 Powerful Composition</h2>
+      <h2 class="section-title">Powerful Composition</h2>
       <p class="section-subtitle">Per 1000 ml — Scientifically balanced for maximum plant response</p>
       <div class="composition-grid">
         <div class="comp-card" style="background:linear-gradient(135deg,#1a237e,#283593);">
@@ -2163,7 +2298,7 @@
     <div class="container">
       <div style="text-align:center;">
         <div class="section-eyebrow">7 Powerful Mechanisms</div>
-        <h2 class="section-title">🌿 Key Benefits of INDIRA Plant Booster</h2>
+        <h2 class="section-title">Key Benefits of INDIRA Plant Booster</h2>
       </div>
       <div class="benefits-list">
         <div class="benefit-row"><div class="benefit-icon">🌱</div><div class="benefit-content"><h4>Promotes Lateral Bud Branching & Mop Formation</h4><p>Encourages more side shoots and branches, resulting in <strong>increased flowering</strong>, higher fruit setting, and improved overall yield.</p></div></div>
@@ -2183,7 +2318,7 @@
       <div style="text-align:center;"><h2 class="section-title">Recommended Crops & Dosage</h2></div>
       <div class="crops-dosage-grid">
         <div class="crops-card">
-          <h3>🌾 Recommended Crops</h3>
+          <h3>Recommended Crops</h3>
           <div class="crops-tags">
             <span class="crop-tag">🎋 Sugarcane</span>
             <span class="crop-tag">🍇 Grapes</span>
@@ -2194,7 +2329,7 @@
           </div>
         </div>
         <div class="dosage-card">
-          <h3>💧 Dosage & Application</h3>
+          <h3>Dosage & Application</h3>
           <div class="dosage-row">
             <div class="dosage-icon">🚿</div>
             <div><div class="dosage-name">Foliar Spray</div><div class="dosage-amount">5 ml per Liter of Water</div></div>
@@ -2212,7 +2347,7 @@
   <!-- COMPATIBILITY -->
   <section>
     <div class="container" style="text-align:center;">
-      <h2 class="section-title">🔄 Compatibility</h2>
+      <h2 class="section-title">Compatibility</h2>
       <p class="section-subtitle">INDIRA Plant Booster is highly compatible with your existing farm inputs</p>
       <div class="compat-tags">
         <span class="compat-tag">✔ Fungicides</span>
@@ -2228,7 +2363,7 @@
   <!-- SUSTAINABLE + WHY FARMERS -->
   <section style="background:var(--green-pale);">
     <div class="container" style="text-align:center;">
-      <h2 class="section-title">🌍 Ideal for Modern & Sustainable Farming</h2>
+      <h2 class="section-title">Ideal for Modern & Sustainable Farming</h2>
       <div class="sustain-grid">
         <div class="sustain-item"><div class="icon">🌿</div><p>Organic-friendly farming practices</p></div>
         <div class="sustain-item"><div class="icon">♻️</div><p>Sustainable crop production</p></div>
@@ -2254,11 +2389,11 @@
           <p class="subtitle">Premium Organic Growth Enhancer for Modern Drip Farming</p>
           <span class="hp-pack">5 Liters – Fertigation Solution</span>
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;">
-            <span style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:rgba(255,255,255,0.75);">✔ Advanced Seaweed Technology</span>
             <span style="display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:rgba(255,255,255,0.75);">✔ Strong Root-to-Shoot Activation</span>
           </div>
           <div style="margin-top:22px;">
-            <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Enquire Now →</a>
+            <!-- CHANGE 10: Enquire Now opens WhatsApp Business chat -->
+            <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Enquire Now →</a>
           </div>
         </div>
         <div class="hp-product-img-wrap">
@@ -2275,7 +2410,7 @@
   <section style="background:var(--green-pale);">
     <div class="container" style="text-align:center;">
       <div class="section-eyebrow">What's Inside</div>
-      <h2 class="section-title">🧪 Powerful Composition</h2>
+      <h2 class="section-title">Powerful Composition</h2>
       <p class="section-subtitle">Per 5 Liters — Scientifically balanced for maximum plant response via drip</p>
       <div class="composition-grid">
         <div class="comp-card" style="background:linear-gradient(135deg,#004d40,#00695c);">
@@ -2308,7 +2443,7 @@
     <div class="container">
       <div style="text-align:center;">
         <div class="section-eyebrow">6 Powerful Mechanisms</div>
-        <h2 class="section-title">🌿 How INDIRA Drip Special Works</h2>
+        <h2 class="section-title">How INDIRA Drip Special Works</h2>
       </div>
       <div class="benefits-list">
         <div class="benefit-row"><div class="benefit-icon">🌱</div><div class="benefit-content"><h4>Promotes Lateral Bud Branching (Mop Formation)</h4><p>Encourages more side shoots and productive branches, leading to <strong>increased flowering</strong>, better fruit setting, and higher overall yield.</p></div></div>
@@ -2327,7 +2462,7 @@
       <div style="text-align:center;"><h2 class="section-title">Dosage & Application</h2></div>
       <div class="crops-dosage-grid">
         <div class="crops-card">
-          <h3>🌾 Recommended Crops</h3>
+          <h3>Recommended Crops</h3>
           <div class="crops-tags">
             <span class="crop-tag">🎋 Sugarcane</span>
             <span class="crop-tag">🍇 Grapes</span>
@@ -2338,7 +2473,7 @@
           </div>
         </div>
         <div class="dosage-card">
-          <h3>💧 Drip Application</h3>
+          <h3>Drip Application</h3>
           <div class="dosage-row">
             <div class="dosage-icon">💦</div>
             <div><div class="dosage-name">Drip Irrigation</div><div class="dosage-amount">5 Liters per Acre</div></div>
@@ -2357,7 +2492,7 @@
   <!-- DRIP COMPATIBILITY -->
   <section>
     <div class="container" style="text-align:center;">
-      <h2 class="section-title">🔄 Compatibility</h2>
+      <h2 class="section-title">Compatibility</h2>
       <p class="section-subtitle">INDIRA Drip Special mixes well with your existing farm inputs</p>
       <div class="compat-tags">
         <span class="compat-tag">✔ Fungicides</span>
@@ -2381,12 +2516,13 @@
     <div class="container">
       <div class="hp-hero-inner">
         <div>
-          <div class="hp-badge">🌿 PREMIUM GRANULE PRODUCT</div>
+          <div class="hp-badge">⭐ PREMIUM GRANULE PRODUCT</div>
           <h1>INDIRA Granules</h1>
           <p class="subtitle">Amino + Fulvic + Vitamins — Complete Granular Plant Nutrition</p>
           <span class="hp-pack">1 Kg – Premium Granule Solution</span>
           <div style="margin-top:22px;">
-            <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Enquire Now →</a>
+            <!-- CHANGE 10: Enquire Now opens WhatsApp Business chat -->
+            <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Enquire Now →</a>
           </div>
         </div>
         <div class="hp-product-img-wrap">
@@ -2418,7 +2554,7 @@
   <section style="background:var(--green-pale);">
     <div class="container" style="text-align:center;">
       <div class="section-eyebrow">What's Inside</div>
-      <h2 class="section-title">🧪 Composition</h2>
+      <h2 class="section-title">Composition</h2>
       <p class="section-subtitle">Per 1 Kg — Triple-action granular formula for complete plant support</p>
       <div class="composition-grid">
         <div class="comp-card" style="background:linear-gradient(135deg,#1a237e,#283593);">
@@ -2443,7 +2579,7 @@
   <section>
     <div class="container">
       <div style="text-align:center;">
-        <h2 class="section-title">🌿 Key Benefits of INDIRA Granules</h2>
+        <h2 class="section-title">Key Benefits of INDIRA Granules</h2>
       </div>
       <div class="benefits-list">
         <div class="benefit-row"><div class="benefit-icon">🌱</div><div class="benefit-content"><h4>Promotes Strong Root Development</h4><p>Amino acids and fulvic acid work synergistically to stimulate root elongation and lateral branching for <strong>better nutrient and water uptake</strong>.</p></div></div>
@@ -2460,7 +2596,7 @@
       <div style="text-align:center;"><h2 class="section-title">Application Details</h2></div>
       <div class="crops-dosage-grid">
         <div class="crops-card">
-          <h3>🌾 Recommended Crops</h3>
+          <h3>Recommended Crops</h3>
           <div class="crops-tags">
             <span class="crop-tag">🎋 Sugarcane</span>
             <span class="crop-tag">🍇 Grapes</span>
@@ -2471,7 +2607,7 @@
           </div>
         </div>
         <div class="dosage-card">
-          <h3>📦 Dosage & Application</h3>
+          <h3>Dosage & Application</h3>
           <div class="dosage-row">
             <div class="dosage-icon">🌱</div>
             <div><div class="dosage-name">Soil Application (Broadcast)</div><div class="dosage-amount">As per crop requirement</div></div>
@@ -2493,17 +2629,18 @@
     <div class="container">
       <div class="hp-hero-inner">
         <div>
-          <div class="hp-badge" style="background:rgba(0,200,150,0.15);border-color:rgba(0,200,150,0.4);color:#a0ffdf;">🌊 GREEN SEAWEED BOOSTER</div>
+          <div class="hp-badge" style="background:rgba(0,200,150,0.15);border-color:rgba(0,200,150,0.4);color:#a0ffdf;">⭐ GREEN SEAWEED BOOSTER</div>
           <h1>INDIRA Pro Maxx</h1>
           <p class="subtitle">Advance Plant Growth Booster — Green Seaweed Formula</p>
-          <span class="hp-pack">500 ml – Premium Solution &nbsp;|&nbsp; MRP ₹910</span>
+          <span class="hp-pack">500 ml – Premium Solution</span>
           <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;">
             <span style="font-size:0.82rem;color:rgba(255,255,255,0.75);">✔ Spirulin: 20%</span>
             <span style="font-size:0.82rem;color:rgba(255,255,255,0.75);">✔ ISO 9001:2015 Certified</span>
             <span style="font-size:0.82rem;color:rgba(255,255,255,0.75);">✔ 3 Year Shelf Life</span>
           </div>
           <div style="margin-top:22px;">
-            <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Enquire Now →</a>
+            <!-- CHANGE 10: Enquire Now opens WhatsApp Business chat -->
+            <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Enquire Now →</a>
           </div>
         </div>
         <div class="hp-product-img-wrap">
@@ -2535,7 +2672,7 @@
   <section style="background:var(--green-pale);">
     <div class="container" style="text-align:center;">
       <div class="section-eyebrow">Composition</div>
-      <h2 class="section-title">🧪 Composition & Specification</h2>
+      <h2 class="section-title">Composition & Specification</h2>
       <p class="section-subtitle">Per 500 ml — Advanced seaweed-based formulation</p>
       <div class="composition-grid" style="grid-template-columns:1fr 1fr;max-width:700px;margin:32px auto 0;">
         <div class="comp-card" style="background:linear-gradient(135deg,#00695c,#004d40);">
@@ -2551,7 +2688,6 @@
       </div>
       <div class="compat-tags" style="margin-top:24px;">
         <span class="compat-tag">📦 Volume: 500 ml</span>
-        <span class="compat-tag">💰 MRP: ₹910 (incl. taxes)</span>
         <span class="compat-tag">📅 Shelf Life: 3 Years</span>
         <span class="compat-tag">🏭 ISO 9001:2015 Certified</span>
       </div>
@@ -2561,7 +2697,7 @@
   <section>
     <div class="container">
       <div style="text-align:center;">
-        <h2 class="section-title">🌿 Key Benefits of Pro Maxx</h2>
+        <h2 class="section-title">Key Benefits of Pro Maxx</h2>
         <p class="section-subtitle">Twelve powerful plant growth mechanisms in one bottle</p>
       </div>
       <div class="benefits-list">
@@ -2582,10 +2718,10 @@
 
   <section style="background:var(--green-pale);">
     <div class="container">
-      <div style="text-align:center;"><h2 class="section-title">💧 Dosage & Application</h2></div>
+      <div style="text-align:center;"><h2 class="section-title">Dosage & Application</h2></div>
       <div class="crops-dosage-grid">
         <div class="crops-card">
-          <h3>🌾 Recommended Crops</h3>
+          <h3>Recommended Crops</h3>
           <div class="crops-tags">
             <span class="crop-tag">🎋 Sugarcane</span>
             <span class="crop-tag">🍇 Grapes</span>
@@ -2597,7 +2733,7 @@
           </div>
         </div>
         <div class="dosage-card">
-          <h3>🚿 Application Method</h3>
+          <h3>Application Method</h3>
           <div class="dosage-row">
             <div class="dosage-icon">🚿</div>
             <div><div class="dosage-name">Foliar Spray</div><div class="dosage-amount">3 ml per Liter of Water</div></div>
@@ -2613,7 +2749,7 @@
 
   <section>
     <div class="container" style="text-align:center;">
-      <h2 class="section-title">🔄 Compatibility</h2>
+      <h2 class="section-title">Compatibility</h2>
       <p class="section-subtitle">Pro Maxx is compatible with most commonly used farm inputs</p>
       <div class="compat-tags">
         <span class="compat-tag">✔ Fungicides</span>
@@ -2638,7 +2774,8 @@
         <h2>Ready to Experience the INDIRA Difference?</h2>
         <p>Join thousands of progressive farmers who trust INDIRA products for premium yields and better profitability.</p>
         <div class="hp-cta-btns">
-          <a href="#" onclick="showPage('contact');return false;" class="btn btn-primary">Contact Us Today</a>
+          <!-- CHANGE 10: Contact Us Today opens WhatsApp Business chat -->
+          <a href="https://wa.me/918421532100" target="_blank" rel="noopener" class="btn btn-primary">Contact Us Today</a>
           <a href="#" onclick="showPage('products');return false;" class="btn btn-secondary">View All Products</a>
         </div>
       </div>
@@ -2664,10 +2801,10 @@
       <div class="section-eyebrow">Why Work Here</div>
       <h2 class="section-title">Why Join Rich Apple Agrotech?</h2>
       <div class="why-join-grid">
-        <div class="why-join-card"><div class="icon">🌾</div><h4>Agricultural Impact</h4><p>Work on projects that directly benefit farmers across India and create measurable real-world change</p></div>
-        <div class="why-join-card"><div class="icon">💡</div><h4>Innovation Culture</h4><p>Be part of a team that constantly pushes boundaries in AgriTech with fresh ideas and bold solutions</p></div>
-        <div class="why-join-card"><div class="icon">📈</div><h4>Growth Opportunity</h4><p>Grow professionally alongside a fast-expanding company with ambitious goals across Maharashtra and India</p></div>
-        <div class="why-join-card"><div class="icon">🤝</div><h4>Collaborative Environment</h4><p>Work with passionate, like-minded individuals who share a genuine commitment to Indian agriculture</p></div>
+        <div class="why-join-card"><!--<div class="icon">🌾</div>--><h4>Agricultural Impact</h4><p>Work on projects that directly benefit farmers across India and create measurable real-world change</p></div>
+        <div class="why-join-card"><!--<div class="icon">💡</div>--><h4>Innovation Culture</h4><p>Be part of a team that constantly pushes boundaries in AgriTech with fresh ideas and bold solutions</p></div>
+        <div class="why-join-card"><!--<div class="icon">📈</div>--><h4>Growth Opportunity</h4><p>Grow professionally alongside a fast-expanding company with ambitious goals across Maharashtra and India</p></div>
+        <div class="why-join-card"><!--<div class="icon">🤝</div>--><h4>Collaborative Environment</h4><p>Work with passionate, like-minded individuals who share a genuine commitment to Indian agriculture</p></div>
       </div>
     </div>
   </section>
@@ -2705,33 +2842,38 @@
     <div class="container">
       <div class="form-wrapper">
         <h3>Apply Now</h3>
-        <form onsubmit="handleCareerSubmit(event)">
+        <!-- FIX 2: Complete validation on Careers Apply Now form -->
+        <form onsubmit="handleCareerSubmit(event)" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="c-name">Full Name *</label>
               <input type="text" id="c-name" placeholder="Your full name" required>
+              <span class="field-error" id="c-name-error"></span>
             </div>
             <div class="form-group">
               <label for="c-email">Email Address *</label>
               <input type="email" id="c-email" placeholder="your@email.com" required>
+              <span class="field-error" id="c-email-error"></span>
             </div>
           </div>
           <div class="form-group">
             <label for="c-phone">Phone Number *</label>
             <input type="tel" id="c-phone" placeholder="+91 XXXXX XXXXX" required>
+            <span class="field-error" id="c-phone-error"></span>
           </div>
           <div class="form-group">
             <label for="c-position">Position Applying For</label>
             <select id="c-position">
               <option value="">Select a position...</option>
               <option>Agronomist / Field Officer</option>
-              <option>Marketing & Sales Manager</option>
+              <option>Marketing &amp; Sales Manager</option>
               <option>Sales Executive</option>
             </select>
           </div>
           <div class="form-group">
             <label for="c-cover">Cover Letter / Why You're a Good Fit *</label>
             <textarea id="c-cover" placeholder="Tell us about yourself and why you'd like to join Rich Apple Agrotech..." required></textarea>
+            <span class="field-error" id="c-cover-error"></span>
           </div>
           <button type="submit" class="submit-btn">Submit Application</button>
           <div class="success-msg" id="career-success">
@@ -2755,15 +2897,18 @@
       <p class="section-subtitle">We're here to answer your questions, support your farming needs, and build lasting partnerships.</p>
 
       <div class="contact-info-grid" style="text-align:left;">
-        <div class="contact-card">
+        <!-- CHANGE 4: India Office section — clicking opens Google Maps in a new tab -->
+        <!-- FIX 1: India Office — real Google Maps link for Rich Apple Agrotech -->
+        <div class="contact-card" style="cursor:pointer;" onclick="window.open('https://maps.app.goo.gl/5vL4wmgTEEpggFpw5','_blank')" title="Open in Google Maps">
           <div class="icon">📍</div>
-          <h4>India Office</h4>
+          <h4>India Office <span style="font-size:0.75rem;color:var(--green-bright);font-weight:400;">📍 View on Map</span></h4>
           <p>Om Gita Residency, Behind Ganapti Mandir, Vishrambag<br>At Post – Sangli, Taluka – Miraj<br>Dist. – Sangli, Maharashtra – 416416</p>
         </div>
         <div class="contact-card">
           <div class="icon">📞</div>
           <h4>Phone</h4>
-          <p>+91 84215 32100</p>
+          <!-- CHANGE 5: Phone number links to WhatsApp Business chat -->
+          <p><a href="https://wa.me/918421532100" target="_blank" rel="noopener" style="color:var(--green-bright);font-weight:600;">+91 84215 32100</a></p>
           <p style="margin-top:8px;font-size:0.8rem;color:var(--text-light);">Mon–Sat: 10:00 AM – 6:00 PM | Sunday Off</p>
         </div>
         <div class="contact-card">
@@ -2775,11 +2920,18 @@
         <div class="contact-card">
           <div class="icon">🌐</div>
           <h4>Connect With Us</h4>
-          <p>
-            <a href="https://www.facebook.com/people/Rich-Apple-Agrotech-India-Pvt-Ltd/61587287895294/" target="_blank" style="color:var(--green-bright);">Facebook</a><br>
-            <a href="https://www.linkedin.com/company/rich-apple-agrotech-pvt-ltd/posts/?feedView=all" target="_blank" style="color:var(--green-bright);">LinkedIn</a><br>
-            <a href="https://www.youtube.com/channel/UC_mhChRm63bEnvFVc-WPZgg" target="_blank" style="color:var(--green-bright);">YouTube</a>
-          </p>
+          <!-- FIX 3: Social icons centered inside the card -->
+          <div class="social-icons-row" style="justify-content:center;margin-top:14px;">
+            <a href="https://www.facebook.com/people/Rich-Apple-Agrotech-India-Pvt-Ltd/61587287895294/" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon-link social-icon-fb">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="18" height="18" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91V133.58c0-25.35 12.42-50.06 52.24-50.06H294V6.26S259.64 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39V512h100.17V288z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/rich-apple-agrotech-pvt-ltd/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon-link social-icon-li">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/channel/UC_mhChRm63bEnvFVc-WPZgg" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon-link social-icon-yt">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="18" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -2790,30 +2942,36 @@
     <div class="container">
       <div class="form-wrapper">
         <h3>Send Us a Message</h3>
-        <form onsubmit="handleContactSubmit(event)">
+        <!-- FIX 2: Complete validation added to Send Us a Message form -->
+        <form onsubmit="handleContactSubmit(event)" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="ct-name">Your Name *</label>
               <input type="text" id="ct-name" placeholder="Full name" required>
+              <span class="field-error" id="ct-name-error"></span>
             </div>
             <div class="form-group">
               <label for="ct-email">Email Address *</label>
               <input type="email" id="ct-email" placeholder="your@email.com" required>
+              <span class="field-error" id="ct-email-error"></span>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label for="ct-phone">Phone Number *</label>
               <input type="tel" id="ct-phone" placeholder="+91 XXXXX XXXXX" required>
+              <span class="field-error" id="ct-phone-error"></span>
             </div>
             <div class="form-group">
               <label for="ct-subject">Subject *</label>
               <input type="text" id="ct-subject" placeholder="How can we help?" required>
+              <span class="field-error" id="ct-subject-error"></span>
             </div>
           </div>
           <div class="form-group">
             <label for="ct-message">Message *</label>
             <textarea id="ct-message" placeholder="Write your message here..." required></textarea>
+            <span class="field-error" id="ct-message-error"></span>
           </div>
           <button type="submit" class="submit-btn">Send Message</button>
           <div class="success-msg" id="contact-success">
@@ -2825,6 +2983,198 @@
   </section>
 
 </div><!-- /contact -->
+
+<!-- ==================== GALLERY PAGE (CHANGE 7) ==================== -->
+<div id="gallery" class="page">
+  <div class="breadcrumb"><div class="container"><a href="#" onclick="showPage('home');return false;">Home</a> <span>›</span> Gallery</div></div>
+
+  <!-- Gallery Hero -->
+  <div style="background:linear-gradient(135deg,var(--green-dark),var(--green-mid));padding:80px 0;text-align:center;color:white;">
+    <div class="container">
+      <div class="section-eyebrow" style="color:var(--gold-light);">Our Work in the Field</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);margin-bottom:14px;color:white;">Gallery</h1>
+      <p style="color:rgba(255,255,255,0.7);font-size:1.05rem;">Explore our products, field demonstrations, and farming success stories from across India.</p>
+    </div>
+  </div>
+
+  <!-- Gallery Grid — Images -->
+  <section>
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px;">
+        <div class="section-eyebrow">Photos</div>
+        <h2 class="section-title">Field &amp; Product Images</h2>
+        <p class="section-subtitle">Our products in action — from soil to harvest across Maharashtra and beyond.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Image 1 -->
+        <div class="gallery-item">
+          <img src="images/INDIRA_Plant_Booster_photo.png" alt="INDIRA Plant Booster" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%232d5016\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EINDIRA Plant Booster%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3E1 Liter Premium Solution%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">INDIRA Plant Booster — 1 Liter Premium Solution</div>
+        </div>
+        <!-- Image 2 -->
+        <div class="gallery-item">
+          <img src="images/INDIRA_Pro_Maxx_photo.png" alt="INDIRA Pro Maxx" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%233d6b1f\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EINDIRA Pro Maxx%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EGreen Seaweed Formula%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">INDIRA Pro Maxx — Green Seaweed Formula</div>
+        </div>
+        <!-- Image 3 -->
+        <div class="gallery-item">
+          <img src="images/Silicon_Granules_image.jpeg" alt="Silicon Granules" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%231a3a0a\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ESilicon Granules%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EStrong Crop %26 Stress Protection%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Silicon Granules — Strong Crop &amp; Stress Protection</div>
+        </div>
+        <!-- Image 4 -->
+        <div class="gallery-item">
+          <img src="images/polyhalite_logo.jpeg" alt="Polyhalite Granules" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%234a7c2c\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EPolyhalite Granules%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3E4-in-1 Multi-Nutrient%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Polyhalite Granules — 4-in-1 Multi-Nutrient</div>
+        </div>
+        <!-- Image 5 -->
+        <div class="gallery-item">
+          <img src="images/PDM_potash_granules_logo.jpeg" alt="PDM Potash Granules" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%232d5016\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EPDM Potash Granules%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EQuality Fruits %26 Drought Resistance%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">PDM Potash Granules — Quality Fruits &amp; Drought Resistance</div>
+        </div>
+        <!-- Image 6 -->
+        <div class="gallery-item">
+          <img src="images/sugarcane_special_logo.jpeg" alt="Sugarcane Special Granules" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%233d6b1f\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ESugarcane Special%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ELength %2B Thickness %2B Sweetness%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Sugarcane Special Granules — More Length, Thickness &amp; Sweetness</div>
+        </div>
+        <!-- Image 7 -->
+        <div class="gallery-item">
+          <img src="images/Prome_Granules_image.jpeg" alt="Prome Granules" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%231a3a0a\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EProme Granules%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ESoil Reviver %26 Carbon Source%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Prome Granules — Soil Reviver &amp; Carbon Source</div>
+        </div>
+        <!-- Image 8 -->
+        <div class="gallery-item">
+          <img src="images/biochar_powder_logo.jpeg" alt="Biochar Powder" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%234a7c2c\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EBiochar Powder%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ELong-Term Soil Health%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Biochar Powder — Long-Term Soil Health</div>
+        </div>
+        <!-- Image 9 -->
+        <div class="gallery-item">
+          <img src="images/neem_powder_logo.jpeg" alt="Neem Powder" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%232d5016\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ENeem Powder%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ENatural Pest Control%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Neem Powder — Natural Pest Control</div>
+        </div>
+        <!-- Image 10 -->
+        <div class="gallery-item">
+          <img src="images/Humic_Acid_Flex_98_image.jpeg" alt="Humic Acid Flex 98%" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%233d6b1f\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EHumic Acid Flex 98%25%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EMaximum Nutrient Uptake%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Humic Acid Flex 98% — Maximum Nutrient Uptake</div>
+        </div>
+        <!-- Image 11 -->
+        <div class="gallery-item">
+          <img src="images/zinc_boron_SSP_logo.jpeg" alt="Zinc + Boron SSP" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%231a3a0a\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'22\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EZinc %2B Boron (SSP)%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'58%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EDual Micronutrient Power%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Zinc + Boron (SSP) — Dual Micronutrient Power</div>
+        </div>
+        <!-- Image 12 — Company / field placeholder -->
+        <div class="gallery-item">
+          <img src="images/company_logo.jpg" alt="Rich Apple Agrotech" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%234a7c2c\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%23ffffff\' font-family=\'sans-serif\' font-size=\'20\' font-weight=\'bold\' x=\'50%25\' y=\'44%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3ERich Apple Agrotech%3C/text%3E%3Ctext fill=\'%23ffd966\' font-family=\'sans-serif\' font-size=\'15\' x=\'50%25\' y=\'60%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EEmpowering Farmers%3C/text%3E%3C/svg%3E'">
+          <div class="gallery-caption">Rich Apple Agrotech India Pvt Ltd — Empowering Farmers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery — Videos Section -->
+<section style="background:var(--green-pale);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div class="section-eyebrow">Videos</div>
+      <h2 class="section-title">Product &amp; Field Demonstration Videos</h2>
+      <p class="section-subtitle">Watch our products deliver real results for farmers across India.</p>
+    </div>
+
+    <div class="gallery-video-grid">
+
+      <!-- Video 1 -->
+      <div class="gallery-video-item">
+        <div class="gallery-video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/xrehgb7Hg3U?rel=0"
+            title="Rich Apple Agrotech — Video 1"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="gallery-caption">Rich Apple Agrotech — INDIRA Plant Booster | जास्त उत्पादन देणार | Rich Apple Agrotech | इंदिरा प्लान्ट बूस्टर</div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="gallery-video-item">
+        <div class="gallery-video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/KuO5bzsYXgE?rel=0"
+            title="Rich Apple Agrotech — Video 2"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="gallery-caption">Rich Apple Agrotech — पिके वाळत आहेत? INDIRA Plant Booster वापरा | उत्पादन वाढवा | Rich Apple Agrotech</div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="gallery-video-item">
+        <div class="gallery-video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/UYg6_ZMuscw?rel=0"
+            title="Rich Apple Agrotech — Video 3"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="gallery-caption">Rich Apple Agrotech — उसाची वाढ मंद आहे? फुटवे कमी आहेत? उत्पन्न अपेक्षेपेक्षा कमी आहे?</div>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="gallery-video-item">
+        <div class="gallery-video-wrapper">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/Urdti_eVkEs?rel=0"
+            title="Rich Apple Agrotech — Video 4"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="gallery-caption">Rich Apple Agrotech — 🌱 शेतकरी अनुभव – इंदिरा बूस्टर किटचा जबरदस्त परिणाम! 🌱</div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin-top:48px;">
+      <p style="color:var(--text-muted);margin-bottom:20px;">
+        For more videos, visit our official YouTube channel.
+      </p>
+      <a href="https://www.youtube.com/channel/UC_mhChRm63bEnvFVc-WPZgg"
+         target="_blank"
+         rel="noopener"
+         class="btn btn-green"
+         style="display:inline-flex;align-items:center;gap:8px;">
+         
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="18" height="18" fill="currentColor">
+          <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/>
+        </svg>
+
+        Visit Our YouTube Channel
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /gallery -->
 
 </main>
 
@@ -2868,6 +3218,8 @@
           <li><a href="#" onclick="showPage('about');return false;">About Us</a></li>
           <li><a href="#" onclick="showPage('products');return false;">Products</a></li>
           <li><a href="#" onclick="showPage('hero-product');return false;">Hero Product</a></li>
+          <!-- CHANGE 7: Gallery added to footer quick links -->
+          <li><a href="#" onclick="showPage('gallery');return false;">Gallery</a></li>
           <li><a href="#" onclick="showPage('careers');return false;">Careers</a></li>
           <li><a href="#" onclick="showPage('contact');return false;">Contact Us</a></li>
         </ul>
@@ -2875,16 +3227,25 @@
       <div class="footer-col">
         <h4>Contact Info</h4>
         <p>📞 <a href="tel:+918421532100" style="color:rgba(255,255,255,0.65);">+91 84215 32100</a></p>
-        <p>✉️ <a href="mailto:info.richapple@gmail.com" style="color:rgba(255,255,255,0.65);">info.richapple&#64;gmail.com</a></p>
+        <a href="mailto:info.richapple@gmail.com" style="color:rgba(255,255,255,0.65);">info.richapple&#64;gmail.com</a>
+        <!-- CHANGE 1: Footer Social Icons — replaced text links with Font Awesome brand icons -->
         <p style="margin-top:14px;"><strong style="color:white;">Follow Us</strong></p>
-        <p><a href="https://www.facebook.com/people/Rich-Apple-Agrotech-India-Pvt-Ltd/61587287895294/" target="_blank" style="color:rgba(255,255,255,0.65);">📘 Facebook</a></p>
-        <p><a href="https://www.linkedin.com/company/rich-apple-agrotech-pvt-ltd/posts/?feedView=all" target="_blank" style="color:rgba(255,255,255,0.65);">💼 LinkedIn</a></p>
-        <p><a href="https://www.youtube.com/channel/UC_mhChRm63bEnvFVc-WPZgg" target="_blank" style="color:rgba(255,255,255,0.65);">▶️ YouTube</a></p>
+        <div class="social-icons-row">
+          <a href="https://www.facebook.com/people/Rich-Apple-Agrotech-India-Pvt-Ltd/61587287895294/" target="_blank" rel="noopener" aria-label="Facebook" class="social-icon-link social-icon-fb">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="18" height="18" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91V133.58c0-25.35 12.42-50.06 52.24-50.06H294V6.26S259.64 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39V512h100.17V288z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/rich-apple-agrotech-pvt-ltd/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon-link social-icon-li">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="18" height="18" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UC_mhChRm63bEnvFVc-WPZgg" target="_blank" rel="noopener" aria-label="YouTube" class="social-icon-link social-icon-yt">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="20" height="18" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2025 Rich Apple Agrotech India Pvt Ltd. All Rights Reserved. &nbsp;|&nbsp; Made with 🌱 for Indian Farmers
+    © 2025 Rich Apple Agrotech India Pvt Ltd. All Rights Reserved. &nbsp;|&nbsp; Made for Indian Farmers
   </div>
 </footer>
 
@@ -2960,6 +3321,35 @@
   }
 
   // ===== FORM HANDLERS =====
+
+  // ===== SHARED VALIDATION HELPERS =====
+  // FIX 2: Complete form validation for both Careers and Contact forms
+
+  function setFieldError(inputId, errorId, message) {
+    const input = document.getElementById(inputId);
+    const err   = document.getElementById(errorId);
+    if (input) input.classList.add('input-error');
+    if (err)   { err.textContent = message; err.classList.add('visible'); }
+  }
+
+  function clearFieldError(inputId, errorId) {
+    const input = document.getElementById(inputId);
+    const err   = document.getElementById(errorId);
+    if (input) input.classList.remove('input-error');
+    if (err)   { err.textContent = ''; err.classList.remove('visible'); }
+  }
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+  }
+
+  function validatePhone(val) {
+    // Strip spaces, dashes, optional +91 or 0 prefix, then check for exactly 10 digits
+    const digits = val.trim().replace(/[\s\-().]/g, '').replace(/^(\+91|91|0)/, '');
+    return /^\d{10}$/.test(digits);
+  }
+
+  // ===== CAREERS FORM — FULL VALIDATION =====
   function handleCareerSubmit(event) {
     event.preventDefault();
 
@@ -2971,11 +3361,47 @@
 
     if (!nameEl || !emailEl || !phoneEl || !coverEl) return;
 
-    const name     = nameEl.value;
-    const email    = emailEl.value;
-    const phone    = phoneEl.value;
+    let hasError = false;
+
+    // Full Name — must not be empty
+    if (!nameEl.value.trim()) {
+      setFieldError('c-name', 'c-name-error', 'Full name is required.');
+      hasError = true;
+    } else {
+      clearFieldError('c-name', 'c-name-error');
+    }
+
+    // Email — standard format
+    if (!validateEmail(emailEl.value)) {
+      setFieldError('c-email', 'c-email-error', 'Please enter a valid email address (e.g. user@domain.com).');
+      hasError = true;
+    } else {
+      clearFieldError('c-email', 'c-email-error');
+    }
+
+    // Phone — exactly 10 digits, numeric only
+    if (!validatePhone(phoneEl.value)) {
+      setFieldError('c-phone', 'c-phone-error', 'Enter a valid 10-digit mobile number (numbers only, no letters or special characters).');
+      hasError = true;
+    } else {
+      clearFieldError('c-phone', 'c-phone-error');
+    }
+
+    // Cover letter — must not be empty
+    if (!coverEl.value.trim()) {
+      setFieldError('c-cover', 'c-cover-error', 'Please write a short cover letter or introduction.');
+      hasError = true;
+    } else {
+      clearFieldError('c-cover', 'c-cover-error');
+    }
+
+    if (hasError) return;
+
+    const name     = nameEl.value.trim();
+    const email    = emailEl.value.trim();
+    const phone    = phoneEl.value.trim();
     const position = positionEl ? (positionEl.value || 'Not specified') : 'Not specified';
-    const cover    = coverEl.value;
+    const cover    = coverEl.value.trim();
 
     const subject = encodeURIComponent('New Job Applicant : ' + position);
     const body = encodeURIComponent(
@@ -2988,8 +3414,6 @@
       '---\nSubmitted via Rich Apple Agrotech Website'
     );
 
-    // Show success first, then open mail client in a timeout
-    // so DOM is not disrupted by navigation
     safeShow('career-success');
     event.target.reset();
     setTimeout(() => {
@@ -2998,6 +3422,7 @@
     setTimeout(() => safeHide('career-success'), 6000);
   }
 
+  // ===== CONTACT FORM — FULL VALIDATION =====
   function handleContactSubmit(event) {
     event.preventDefault();
 
@@ -3009,11 +3434,55 @@
 
     if (!nameEl || !emailEl || !phoneEl || !subjectEl || !messageEl) return;
 
-    const name    = nameEl.value;
-    const email   = emailEl.value;
-    const phone   = phoneEl.value;
-    const subject = subjectEl.value;
-    const message = messageEl.value;
+    let hasError = false;
+
+    // Name — must not be empty
+    if (!nameEl.value.trim()) {
+      setFieldError('ct-name', 'ct-name-error', 'Your name is required.');
+      hasError = true;
+    } else {
+      clearFieldError('ct-name', 'ct-name-error');
+    }
+
+    // Email — standard format
+    if (!validateEmail(emailEl.value)) {
+      setFieldError('ct-email', 'ct-email-error', 'Please enter a valid email address (e.g. user@domain.com).');
+      hasError = true;
+    } else {
+      clearFieldError('ct-email', 'ct-email-error');
+    }
+
+    // Phone — exactly 10 digits, numeric only
+    if (!validatePhone(phoneEl.value)) {
+      setFieldError('ct-phone', 'ct-phone-error', 'Enter a valid 10-digit mobile number (numbers only, no letters or special characters).');
+      hasError = true;
+    } else {
+      clearFieldError('ct-phone', 'ct-phone-error');
+    }
+
+    // Subject — must not be empty
+    if (!subjectEl.value.trim()) {
+      setFieldError('ct-subject', 'ct-subject-error', 'Please enter a subject.');
+      hasError = true;
+    } else {
+      clearFieldError('ct-subject', 'ct-subject-error');
+    }
+
+    // Message — must not be empty and at least 10 chars
+    if (!messageEl.value.trim() || messageEl.value.trim().length < 10) {
+      setFieldError('ct-message', 'ct-message-error', 'Please enter a message (at least 10 characters).');
+      hasError = true;
+    } else {
+      clearFieldError('ct-message', 'ct-message-error');
+    }
+
+    if (hasError) return;
+
+    const name    = nameEl.value.trim();
+    const email   = emailEl.value.trim();
+    const phone   = phoneEl.value.trim();
+    const subject = subjectEl.value.trim();
+    const message = messageEl.value.trim();
 
     const mailSubject = encodeURIComponent('New Message from User : ' + subject);
     const body = encodeURIComponent(
@@ -3026,7 +3495,6 @@
       '---\nSubmitted via Rich Apple Agrotech Website'
     );
 
-    // Show success first, then open mail client in a timeout
     safeShow('contact-success');
     event.target.reset();
     setTimeout(() => {
